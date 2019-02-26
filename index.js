@@ -13,7 +13,8 @@ var {
   BackHandler,
   Platform,
   Modal,
-  Keyboard
+  Keyboard,
+  I18nManager
 } = require('react-native');
 
 var createReactClass = require('create-react-class');
@@ -440,7 +441,9 @@ var ModalBox = createReactClass({
   renderContent() {
     var size    = {height: this.state.containerHeight, width: this.state.containerWidth};
     var offsetX = (this.state.containerWidth - this.state.width) / 2;
-
+    if (I18nManager.isRTL) {
+      offsetX = -offsetX;
+    }
     return (
       <Animated.View
         onLayout={this.onViewLayout}
